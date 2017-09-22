@@ -17,14 +17,11 @@ import java.util.stream.Stream;
 @ContextConfiguration( classes = {FileReaderConfig.class} )
 public class FileReaderServiceTest {
 
-    @Autowired
-    FileReaderService fileReaderService;
+//    @Autowired
+//    FileReaderService fileReaderService;
 
     @Test
     public void read(){
-        String testStr = "fileName=DML_20170918_dmigliore_AMSAZIMUT-18798_afb_HSBC_configurazione_precompila_rimborsi;agencyCode=00028;pdfName=HSBC AFB.pdf;code=template.pdf.sottoscrizione.afb.hsbc";
-        Stream<String> lines = fileReaderService.lines(  "src/test/resources/input", "input.txt" );
-        lines.forEach( line -> testStr.equals(line));
     }
 
 }
