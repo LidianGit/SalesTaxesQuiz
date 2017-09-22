@@ -1,9 +1,9 @@
 package com.lastminute.sales.taxes.quiz.checkout.service;
 
 import com.lastminute.sales.taxes.quiz.checkout.config.CheckoutConfig;
-import com.lastminute.sales.taxes.quiz.common.model.Basket;
+import com.lastminute.sales.taxes.quiz.basket.model.Basket;
 import com.lastminute.sales.taxes.quiz.common.model.Receipt;
-import com.lastminute.sales.taxes.quiz.salestaxes.service.SalesTaxesService;
+import com.lastminute.sales.taxes.quiz.tax.service.TaxService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static com.lastminute.sales.taxes.quiz.input.BasketMockUtil.*;
+import static com.lastminute.sales.taxes.quiz.util.BasketMockUtil.*;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -26,7 +26,7 @@ public class CheckoutServiceTest {
     private CheckoutService checkoutService;
 
     @Autowired
-    private SalesTaxesService salesTaxesService;
+    private TaxService taxService;
 
     @Test
     public void issueReceiptBasket1(){
@@ -44,7 +44,7 @@ public class CheckoutServiceTest {
     }
 
     private void assertReceipt(Basket basket, Basket basketWithTaxes, String exTotalSalesTaxes, String exTotal){
-        when(salesTaxesService.applyTaxes(basket)).thenReturn(basketWithTaxes);
+        when(taxService.applyTaxes(basket)).thenReturn(basketWithTaxes);
         Receipt receipt = checkoutService.issueReceipt( basket );
         assertEquals(basketWithTaxes, receipt.getBasket());
         assertEquals(exTotalSalesTaxes, receipt.getTotalSalesTaxes().toString());
@@ -52,8 +52,8 @@ public class CheckoutServiceTest {
     }
 
     @Bean
-    public SalesTaxesService salesTaxesService(){
-        return mock(SalesTaxesService.class);
+    public TaxService taxService(){
+        return mock(TaxService.class);
     }
 
 }

@@ -3,7 +3,6 @@ package com.lastminute.sales.taxes.quiz.salestaxes.service.impl;
 import com.lastminute.sales.taxes.quiz.common.model.Basket;
 import com.lastminute.sales.taxes.quiz.common.model.BasketItem;
 import com.lastminute.sales.taxes.quiz.common.model.ProductCategory;
-import com.lastminute.sales.taxes.quiz.common.model.SaleTax;
 import com.lastminute.sales.taxes.quiz.salestaxes.service.SalesTaxesService;
 import org.springframework.stereotype.Component;
 
@@ -22,19 +21,26 @@ public class SalesTaxesServiceImpl implements SalesTaxesService {
 
     private BasketItem applyTaxes(BasketItem basketItem){
         BigDecimal price = basketItem.getPrice();
-        BigDecimal salesTaxes = basketItem.getProduct().getCategories().stream()
-                .map(this::sumTaxes)
+
+        BigDecimal salesTaxesSum = basketItem.getProduct().getCategories().stream()
+                .map(productCategory -> sumTaxes(price, productCategory))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        BigDecimal priceWithTaxes = price.add( price.multiply(salesTaxes).divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_UP) );
+        BigDecimal priceWithTaxes = price.add( salesTaxesSum );
         basketItem.setPrice(priceWithTaxes);
         return basketItem;
     }
 
-    private BigDecimal sumTaxes(ProductCategory productCategory){
+    public BigDecimal sumTaxes(BigDecimal price, ProductCategory productCategory){
         return productCategory.getSaleTaxes().stream()
-                .map(SaleTax::getPercent)
+                .map(saleTax -> price.multiply(saleTax.getPercent())
+                                .divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_UP))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public static final BigDecimal applyTaxToPrice(BigDecimal price){
+        price.multiply(price)
+                .divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_UP))
     }
 
 }

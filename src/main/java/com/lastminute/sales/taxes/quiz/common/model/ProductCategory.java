@@ -1,5 +1,7 @@
 package com.lastminute.sales.taxes.quiz.common.model;
 
+import com.lastminute.sales.taxes.quiz.tax.model.Tax;
+
 import java.util.List;
 
 public class ProductCategory {
@@ -7,7 +9,7 @@ public class ProductCategory {
     private String code;
     private String description;
     private ProductMacroCategory macroCategory;
-    private List<SaleTax> saleTaxes;
+    private List<Tax> taxes;
 
     public String getCode() {
         return code;
@@ -33,12 +35,12 @@ public class ProductCategory {
         this.macroCategory = macroCategory;
     }
 
-    public List<SaleTax> getSaleTaxes() {
-        return saleTaxes;
+    public List<Tax> getTaxes() {
+        return taxes;
     }
 
-    public void setSaleTaxes(List<SaleTax> saleTaxes) {
-        this.saleTaxes = saleTaxes;
+    public void setTaxes(List<Tax> taxes) {
+        this.taxes = taxes;
     }
 
     public ProductCategory code(String code){
@@ -56,8 +58,8 @@ public class ProductCategory {
         return this;
     }
 
-    public ProductCategory saleTaxes(List<SaleTax> saleTaxes){
-        this.saleTaxes = saleTaxes;
+    public ProductCategory saleTaxes(List<Tax> taxes){
+        this.taxes = taxes;
         return this;
     }
 

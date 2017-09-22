@@ -1,5 +1,7 @@
 package com.lastminute.sales.taxes.quiz.common.model;
 
+import com.lastminute.sales.taxes.quiz.basket.model.Basket;
+
 import java.math.BigDecimal;
 
 public class Receipt {

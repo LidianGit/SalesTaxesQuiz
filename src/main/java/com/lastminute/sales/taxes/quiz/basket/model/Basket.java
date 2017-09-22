@@ -1,4 +1,6 @@
-package com.lastminute.sales.taxes.quiz.common.model;
+package com.lastminute.sales.taxes.quiz.basket.model;
+
+import com.lastminute.sales.taxes.quiz.basket.item.model.BasketItem;
 
 import java.io.Serializable;
 import java.util.List;
