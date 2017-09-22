@@ -1,8 +1,8 @@
-package com.lastminute.sales.taxes.quiz.calculation.rounding.rule.factory;
+package com.lastminute.sales.taxes.quiz.math.rounding.rule.factory;
 
-import com.lastminute.sales.taxes.quiz.calculation.rounding.rule.RoundingRuleType;
-import com.lastminute.sales.taxes.quiz.calculation.rounding.rule.strategy.RoundingRuleStrategy;
-import com.lastminute.sales.taxes.quiz.calculation.rounding.rule.strategy.impl.Nearest5RoundingRuleStrategy;
+import com.lastminute.sales.taxes.quiz.math.rounding.rule.RoundingRuleType;
+import com.lastminute.sales.taxes.quiz.math.rounding.rule.strategy.RoundingRuleStrategy;
+import com.lastminute.sales.taxes.quiz.math.rounding.rule.strategy.impl.NearestFiveRoundingRuleStrategy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,11 +12,11 @@ public class RoundingRuleFactory {
     private static final Map<RoundingRuleType,RoundingRuleStrategy> rrStrategiesMap = new HashMap<>();
 
     static{
-        rrStrategiesMap.put(RoundingRuleType.NEAREST_5, new Nearest5RoundingRuleStrategy());
+        rrStrategiesMap.put(RoundingRuleType.ROUNDING_NEAREST_5, new NearestFiveRoundingRuleStrategy());
     }
 
-    public static RoundingRuleStrategy getStrategy(String roundingRule){
-        return rrStrategiesMap.get(roundingRule);
+    public static RoundingRuleStrategy getStrategy(RoundingRuleType roundingRuleType){
+        return rrStrategiesMap.get(roundingRuleType);
     }
 
 }
