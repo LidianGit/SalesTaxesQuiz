@@ -1,14 +1,14 @@
 package com.lastminute.taxesquiz.sale.tax.service.impl;
 
-import com.lastminute.taxesquiz.sale.order.basket.model.Basket;
 import com.lastminute.taxesquiz.sale.order.basket.item.model.BasketItem;
+import com.lastminute.taxesquiz.sale.order.basket.model.Basket;
 import com.lastminute.taxesquiz.sale.tax.service.TaxService;
 import com.lastminute.taxesquiz.sale.tax.util.TaxCalculatorUtil;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
-@Component
+@Service
 public class TaxServiceImpl implements TaxService {
 
     @Override

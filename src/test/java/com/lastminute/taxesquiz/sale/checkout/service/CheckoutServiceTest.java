@@ -47,7 +47,7 @@ public class CheckoutServiceTest {
         when(taxService.applyTaxes(basket)).thenReturn(basketWithTaxes);
         Receipt receipt = checkoutService.issueReceipt( basket );
         assertEquals(basketWithTaxes, receipt.getBasket());
-        assertEquals(exTotalSalesTaxes, receipt.getTotalSalesTaxes().toString());
+        assertEquals(exTotalSalesTaxes, receipt.getTotalTaxes().toString());
         assertEquals(exTotal, receipt.getTotal().toString());
     }
 

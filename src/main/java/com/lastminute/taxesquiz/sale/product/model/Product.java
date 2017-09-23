@@ -1,13 +1,16 @@
 package com.lastminute.taxesquiz.sale.product.model;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
+import java.util.Formattable;
+import java.util.Formatter;
 import java.util.Set;
 
-public class Product implements Serializable {
+public class Product implements Formattable, Serializable {
 
     private static final long serialVersionUID = -7570056540194524800L;
 
@@ -118,5 +121,20 @@ public class Product implements Serializable {
                 .append("imported", imported)
                 .append("packaging", packaging)
                 .toString();
+    }
+
+    @Override
+    public void formatTo(Formatter formatter, int flags, int width, int precision) {
+        StringBuilder sb = new StringBuilder();
+        if(imported){
+            sb.append("imported");
+            sb.append(StringUtils.SPACE);
+        }
+        if(!packaging.isEmpty()){
+            sb.append(packaging);
+            sb.append(StringUtils.SPACE);
+        }
+        sb.append(description);
+        formatter.format(sb.toString());
     }
 }

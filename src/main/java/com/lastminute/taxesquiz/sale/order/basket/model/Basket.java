@@ -6,9 +6,13 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
+import java.util.Formattable;
+import java.util.Formatter;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
-public class Basket implements Serializable{
+public class Basket implements Formattable, Serializable{
 
     private static final long serialVersionUID = -6965168913310506566L;
 
@@ -52,5 +56,21 @@ public class Basket implements Serializable{
         return new ToStringBuilder(this)
                 .append("basketItems", basketItems)
                 .toString();
+    }
+
+    @Override
+    public void formatTo(Formatter formatter, int flags, int width, int precision) {
+        StringBuilder sb = new StringBuilder();
+        Formatter biFormatter = new Formatter();
+        basketItems.forEach(
+                bi -> sb.append(formatBasketItem(bi)).append(System.lineSeparator())
+        );
+        formatter.format(sb.toString());
+    }
+
+    private String formatBasketItem(BasketItem basketItem){
+        Formatter biFormatter = new Formatter();
+        biFormatter.format("%s", basketItem);
+        return biFormatter.toString();
     }
 }

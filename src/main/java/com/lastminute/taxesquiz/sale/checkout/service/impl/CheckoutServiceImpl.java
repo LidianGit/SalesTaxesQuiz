@@ -1,15 +1,15 @@
 package com.lastminute.taxesquiz.sale.checkout.service.impl;
 
+import com.lastminute.taxesquiz.sale.checkout.model.Receipt;
 import com.lastminute.taxesquiz.sale.checkout.service.CheckoutService;
 import com.lastminute.taxesquiz.sale.order.basket.model.Basket;
-import com.lastminute.taxesquiz.sale.checkout.model.Receipt;
 import com.lastminute.taxesquiz.sale.tax.service.TaxService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
-@Component
+@Service
 public class CheckoutServiceImpl implements CheckoutService {
 
     @Autowired
@@ -23,7 +23,7 @@ public class CheckoutServiceImpl implements CheckoutService {
         BigDecimal totalWithTaxes = calculateTotal(basket);
         receipt.setBasket(basket);
         receipt.setTotal(totalWithTaxes);
-        receipt.setTotalSalesTaxes(totalWithTaxes.subtract(totalWithoutTaxes));
+        receipt.setTotalTaxes(totalWithTaxes.subtract(totalWithoutTaxes));
         return receipt;
     }
 

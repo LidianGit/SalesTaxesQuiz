@@ -1,14 +1,17 @@
 package com.lastminute.taxesquiz.sale.order.basket.item.model;
 
 import com.lastminute.taxesquiz.sale.product.model.Product;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Formattable;
+import java.util.Formatter;
 
-public class BasketItem implements Serializable {
+public class BasketItem implements Formattable, Serializable {
 
     private static final long serialVersionUID = 241529658779770112L;
 
@@ -86,5 +89,18 @@ public class BasketItem implements Serializable {
                 .append("price", price)
                 .append("qty", qty)
                 .toString();
+    }
+
+    @Override
+    public void formatTo(Formatter formatter, int flags, int width, int precision) {
+        StringBuilder sb = new StringBuilder();
+        Formatter productFormatter = new Formatter();
+        productFormatter.format("%s", product);
+        sb.append(qty)
+                .append(StringUtils.SPACE)
+                .append(productFormatter)
+                .append(": ")
+                .append(price);
+        formatter.format(sb.toString());
     }
 }
