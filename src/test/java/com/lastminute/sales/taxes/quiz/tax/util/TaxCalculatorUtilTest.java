@@ -42,8 +42,7 @@ public class TaxCalculatorUtilTest {
         multiTaxes.add( new Tax().percent(new BigDecimal("5.00") ));
         multiTaxes.add( new Tax().percent(new BigDecimal("5.00") ));
 
-        ProductCategory multiTaxesProductCat = productCategory("MULTITAXES", "multiple taxes",
-                defaultProductMacroCategory(), multiTaxes );
+        ProductCategory multiTaxesProductCat = productCategory("MULTITAXES", "multiple taxes", multiTaxes );
 
         taxesSum = TaxCalculatorUtil.sumTaxes(new BigDecimal("10.00"), multiTaxesProductCat);
         assertEquals("1.00", taxesSum.toString());

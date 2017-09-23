@@ -1,6 +1,7 @@
 package com.lastminute.sales.taxes.quiz.basket.item.model;
 
 import com.lastminute.sales.taxes.quiz.common.model.Product;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -52,4 +53,12 @@ public class BasketItem implements Serializable {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("product", product)
+                .append("price", price)
+                .append("qty", qty)
+                .toString();
+    }
 }

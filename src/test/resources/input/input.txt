@@ -1,1 +1,0 @@
-fileName=DML_20170918_dmigliore_AMSAZIMUT-18798_afb_HSBC_configurazione_precompila_rimborsi;agencyCode=00028;pdfName=HSBC AFB.pdf;code=template.pdf.sottoscrizione.afb.hsbc
