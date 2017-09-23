@@ -17,7 +17,7 @@ public class TaxCalculatorUtilTest {
     public void sumTaxesBasketItemTaxes(){
         BigDecimal taxesSum = TaxCalculatorUtil.sumTaxes(
                 BasketMockUtil.basketItem(
-                        BasketMockUtil.defaultTaxableProduct("bottle of perfume", false),
+                        BasketMockUtil.defaultTaxableProduct("perfume", "bottle of",false),
                         new BigDecimal("18.99"),
                         new Integer(1)
                 )
@@ -25,7 +25,7 @@ public class TaxCalculatorUtilTest {
         assertEquals("1.90", taxesSum.toString());
         taxesSum = TaxCalculatorUtil.sumTaxes(
                 BasketMockUtil.basketItem(
-                        BasketMockUtil.defaultTaxableProduct("bottle of perfume", true),
+                        BasketMockUtil.defaultTaxableProduct("perfume", "bottle of",true),
                         new BigDecimal("27.99"),
                         new Integer(1)
                 )

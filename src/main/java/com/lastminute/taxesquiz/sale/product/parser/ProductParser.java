@@ -1,11 +1,16 @@
 package com.lastminute.taxesquiz.sale.product.parser;
 
+import com.lastminute.taxesquiz.sale.language.domain.Preposition;
+import com.lastminute.taxesquiz.sale.language.domain.ProductPackage;
 import com.lastminute.taxesquiz.sale.language.parser.exception.ParserException;
 import com.lastminute.taxesquiz.sale.language.parser.GenericStringParser;
+import com.lastminute.taxesquiz.sale.order.basket.item.parser.BasketItemParser;
 import com.lastminute.taxesquiz.sale.product.model.Product;
 import com.lastminute.taxesquiz.sale.product.model.ProductCategory;
 import com.lastminute.taxesquiz.sale.tax.model.Tax;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -13,6 +18,8 @@ import java.util.*;
 
 @Component
 public class ProductParser extends GenericStringParser<Product> {
+
+    private static final Logger logger = LoggerFactory.getLogger(BasketItemParser.class);
 
     private static final String IMPORTED_CAT_KEY_WORD = "imported";
     private static final String DEFAULT_CAT_KEY_WORD = "default";
@@ -57,20 +64,52 @@ public class ProductParser extends GenericStringParser<Product> {
 
     @Override
     protected Product parse(LinkedList<String> words) throws ParserException {
-        Boolean imported = findImported(words);
-        String productWord = StringUtils.join(words, " ");
-        Set<ProductCategory> productCategories = new HashSet<>();
-        Optional<String> knownProduct = productKeyWordList.stream().filter(productWord::contains).findAny();
-        if( knownProduct.isPresent() ){
-            productCategories.add(productCategoryDictionary.get(productToCategoryDictionary.get(knownProduct.get())));
-        }else{
-            productCategories.add(productCategoryDictionary.get(DEFAULT_CAT_KEY_WORD));
+        Product product;
+        try{
+            String packaging = findPackaging(words);
+            Boolean imported = findImported(words);
+            String productWord = StringUtils.join(words, " ");
+            Set<ProductCategory> productCategories = new HashSet<>();
+            Optional<String> knownProduct = productKeyWordList.stream().filter(productWord::contains).findAny();
+            if( knownProduct.isPresent() ){
+                productCategories.add(productCategoryDictionary.get(productToCategoryDictionary.get(knownProduct.get())));
+            }else{
+                productCategories.add(productCategoryDictionary.get(DEFAULT_CAT_KEY_WORD));
+            }
+            if(imported){
+                ProductCategory importedCategory = productCategoryDictionary.get(IMPORTED_CAT_KEY_WORD);
+                productCategories.add(importedCategory);
+            }
+            product = new Product()
+                    .code(productWord)
+                    .description(productWord)
+                    .imported(imported)
+                    .packaging(packaging)
+                    .categories(productCategories);
+        }catch (Exception e){
+            logger.error("Unable to parse product words [" + words + "]", e);
+            throw new ParserException(e);
         }
-        if(imported){
-            ProductCategory importedCategory = productCategoryDictionary.get(IMPORTED_CAT_KEY_WORD);
-            productCategories.add(importedCategory);
+        return product;
+    }
+
+    private void appendPackagingWord(StringBuilder packagingBuilder, String word){
+        if(packagingBuilder.length() != 0) packagingBuilder.append(" ");
+        packagingBuilder.append(word);
+    }
+
+    private String findPackaging(LinkedList<String> words){
+        Iterator<String> stringIterator = words.iterator();
+        StringBuilder packagingBuilder = new StringBuilder();
+        while(stringIterator.hasNext()){
+            String word = stringIterator.next();
+            if(Preposition.lookup(word) || ProductPackage.lookup((word))){
+                appendPackagingWord(packagingBuilder, word);
+                stringIterator.remove();
+                continue;
+            }
         }
-        return new Product().code(productWord).description(productWord).imported(imported).categories(productCategories);
+        return packagingBuilder.toString();
     }
 
     private Boolean findImported(LinkedList<String> words){

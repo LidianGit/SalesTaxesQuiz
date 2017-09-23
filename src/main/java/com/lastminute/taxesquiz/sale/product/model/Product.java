@@ -1,5 +1,7 @@
 package com.lastminute.taxesquiz.sale.product.model;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
@@ -12,6 +14,7 @@ public class Product implements Serializable {
     private String code;
     private String description;
     private Boolean imported = false;
+    private String packaging="";
     private Set<ProductCategory> categories;
 
     public String getCode() {
@@ -46,6 +49,14 @@ public class Product implements Serializable {
         this.imported = imported;
     }
 
+    public String getPackaging() {
+        return packaging;
+    }
+
+    public void setPackaging(String packaging) {
+        this.packaging = packaging;
+    }
+
     public Product code(String code){
         this.code = code;
         return this;
@@ -53,6 +64,11 @@ public class Product implements Serializable {
 
     public Product description(String description){
         this.description = description;
+        return this;
+    }
+
+    public Product packaging(String packaging){
+        this.packaging = packaging;
         return this;
     }
 
@@ -67,11 +83,40 @@ public class Product implements Serializable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        return new EqualsBuilder()
+                .append(code, product.code)
+                .append(description, product.description)
+                .append(imported, product.imported)
+                .append(packaging, product.packaging)
+                .append(categories, product.categories)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(code)
+                .append(description)
+                .append(imported)
+                .append(packaging)
+                .append(categories)
+                .toHashCode();
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .append("code", code)
                 .append("description", description)
                 .append("imported", imported)
+                .append("packaging", packaging)
                 .toString();
     }
 }

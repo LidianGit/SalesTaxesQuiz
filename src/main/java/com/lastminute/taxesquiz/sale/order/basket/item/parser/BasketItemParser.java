@@ -19,7 +19,7 @@ import java.util.*;
 @Component
 public class BasketItemParser extends GenericStringParser<BasketItem> {
 
-    Logger logger = LoggerFactory.getLogger(BasketItemParser.class);
+    private static final Logger logger = LoggerFactory.getLogger(BasketItemParser.class);
 
     @Autowired
     private ProductParser productParser;
@@ -35,9 +35,11 @@ public class BasketItemParser extends GenericStringParser<BasketItem> {
     public BasketItem parse(LinkedList<String> words) throws ParserException {
         BasketItem basketItem = new BasketItem();
         try {
-            words = purify(words);
-            Integer qty = Integer.parseInt(words.removeFirst());
-            BigDecimal price = new BigDecimal(words.removeLast());
+            //words = purify(words);
+            Integer qty = Integer.parseInt(words.removeFirst());   // O(1)
+            BigDecimal price = new BigDecimal(words.removeLast()); // O(1)
+            words.removeLast();// O(1) remote at
+
             String productWord = StringUtils.join(words, " ");
             Product product = productParser.parse(productWord);
             basketItem.product(product).qty(qty).price(price);
@@ -48,7 +50,7 @@ public class BasketItemParser extends GenericStringParser<BasketItem> {
         return basketItem;
     }
 
-
+    /*
     private LinkedList<String> purify(LinkedList<String> words){
         Iterator<String> stringIterator = words.iterator();
         while(stringIterator.hasNext()){
@@ -64,5 +66,5 @@ public class BasketItemParser extends GenericStringParser<BasketItem> {
         }
         return words;
     }
-
+    */
 }

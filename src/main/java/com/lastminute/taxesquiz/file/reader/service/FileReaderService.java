@@ -14,7 +14,7 @@ public class FileReaderService {
 
     private static final Logger logger = LoggerFactory.getLogger( FileReaderService.class );
 
-    public List<String> lines(String fullPath ) {
+    public List<String> lines(String fullPath) {
         List<String> lines = new ArrayList<>();
         BufferedReader reader = null;
         try {
@@ -39,7 +39,6 @@ public class FileReaderService {
         }
         return lines;
     }
-
 
     public List<String> lines(String filePath, String fileName ) {
         return lines( filePath + File.separator + fileName );

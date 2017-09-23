@@ -24,17 +24,17 @@ public class BasketMockUtil {
         return new Basket().basketItems(
                 Arrays.asList(
                         basketItem(
-                                bookProduct("book", false),
+                                bookProduct("book","", false),
                                 new BigDecimal("12.49"),
                                 new Integer(1)
                         ),
                         basketItem(
-                                defaultTaxableProduct("music CD",false),
+                                defaultTaxableProduct("music CD","",false),
                                 new BigDecimal("14.99"),
                                 new Integer(1)
                         ),
                         basketItem(
-                                foodProduct("chocolate bar", false),
+                                foodProduct("chocolate bar", "", false),
                                 new BigDecimal("0.85"),
                                 new Integer(1)
                         )
@@ -54,17 +54,17 @@ public class BasketMockUtil {
         return new Basket().basketItems(
                 Arrays.asList(
                         basketItem(
-                                bookProduct("book", false),
+                                bookProduct("book", "", false),
                                 new BigDecimal("12.49"),
                                 new Integer(1)
                         ),
                         basketItem(
-                                defaultTaxableProduct("music CD", false),
+                                defaultTaxableProduct("music CD", "",false),
                                 new BigDecimal("16.49"),
                                 new Integer(1)
                         ),
                         basketItem(
-                                foodProduct("chocolate bar", false),
+                                foodProduct("chocolate bar", "",false),
                                 new BigDecimal("0.85"),
                                 new Integer(1)
                         )
@@ -81,12 +81,12 @@ public class BasketMockUtil {
         return new Basket().basketItems(
                 Arrays.asList(
                         basketItem(
-                                foodProduct("box of chocolates", true),
+                                foodProduct("chocolates", "box of", true),
                                 new BigDecimal("10.00"),
                                 new Integer(1)
                         ),
                         basketItem(
-                                defaultTaxableProduct("bottle of perfume", true),
+                                defaultTaxableProduct("perfume","bottle of", true),
                                 new BigDecimal("47.50"),
                                 new Integer(1)
                         )
@@ -105,12 +105,12 @@ public class BasketMockUtil {
         return new Basket().basketItems(
                 Arrays.asList(
                         basketItem(
-                                foodProduct("box of chocolates", true),
+                                foodProduct("chocolates", "box of",true),
                                 new BigDecimal("10.50"),
                                 new Integer(1)
                         ),
                         basketItem(
-                                defaultTaxableProduct("bottle of perfume", true),
+                                defaultTaxableProduct("perfume", "bottle of", true),
                                 new BigDecimal("54.65"),
                                 new Integer(1)
                         )
@@ -129,22 +129,22 @@ public class BasketMockUtil {
         return new Basket().basketItems(
                 Arrays.asList(
                         basketItem(
-                                defaultTaxableProduct("bottle of perfume", true),
+                                defaultTaxableProduct("perfume","bottle of", true),
                                 new BigDecimal("27.99"),
                                 new Integer(1)
                         ),
                         basketItem(
-                                defaultTaxableProduct("bottle of perfume", false),
+                                defaultTaxableProduct("perfume","bottle of",false),
                                 new BigDecimal("18.99"),
                                 new Integer(1)
                         ),
                         basketItem(
-                                medicalProduct("packet of headache pills", false),
+                                medicalProduct("headache pills", "packet of",false),
                                 new BigDecimal("9.75"),
                                 new Integer(1)
                         ),
                         basketItem(
-                                foodProduct("box of chocolates", true),
+                                foodProduct("chocolates", "box of",true),
                                 new BigDecimal("11.25"),
                                 new Integer(1)
                         )
@@ -165,22 +165,22 @@ public class BasketMockUtil {
         return new Basket().basketItems(
                 Arrays.asList(
                         basketItem(
-                                defaultTaxableProduct("bottle of perfume", true),
+                                defaultTaxableProduct("perfume", "bottle of", true),
                                 new BigDecimal("32.19"),
                                 new Integer(1)
                         ),
                         basketItem(
-                                defaultTaxableProduct("bottle of perfume", false),
+                                defaultTaxableProduct("perfume", "bottle of",false),
                                 new BigDecimal("20.89"),
                                 new Integer(1)
                         ),
                         basketItem(
-                                product("packet of headache pills"),
+                                medicalProduct("headache pills", "packet of", false),
                                 new BigDecimal("9.75"),
                                 new Integer(1)
                         ),
                         basketItem(
-                                foodProduct("box of chocolates", true),
+                                foodProduct("chocolates","box of",true),
                                 new BigDecimal("11.85"),
                                 new Integer(1)
                         )
@@ -195,38 +195,39 @@ public class BasketMockUtil {
                 .product(product);
     }
 
-    public static Product product(String description){
-        return product(description, false);
-    }
-
-    public static Product product( String description, boolean imported ){
+    public static Product product( String description, String packaging, boolean imported ){
         Set<ProductCategory> productCategories = new HashSet<>();
         if(imported){
             productCategories.add(importedProductCategory());
         }
-        return new Product().code(description).description(description).imported(imported).categories(productCategories);
+        Product product = new Product().code(description)
+                .description(description)
+                .imported(imported)
+                .packaging(packaging)
+                .categories(productCategories);
+        return product;
     }
 
-    public static Product defaultTaxableProduct(String productDescription, boolean imported){
-        Product product = product( productDescription, imported );
+    public static Product defaultTaxableProduct(String productDescription, String packaging, boolean imported){
+        Product product = product( productDescription, packaging, imported );
         product.getCategories().add( defaultProductCategory() );
         return product;
     }
 
-    public static Product bookProduct(String productDescription, boolean imported){
-        Product product = product( productDescription, imported );
+    public static Product bookProduct(String productDescription, String packaging, boolean imported){
+        Product product = product( productDescription, packaging, imported );
         product.getCategories().add(new ProductCategory().code("books").description("books"));
         return product;
     }
 
-    public static Product foodProduct(String productDescription, boolean imported){
-        Product product = product( productDescription, imported );
+    public static Product foodProduct(String productDescription, String packaging, boolean imported){
+        Product product = product( productDescription, packaging, imported );
         product.getCategories().add(new ProductCategory().code("food").description("food"));
         return product;
     }
 
-    public static Product medicalProduct(String productDescription, boolean imported){
-        Product product = product( productDescription, imported );
+    public static Product medicalProduct(String productDescription, String packaging, boolean imported){
+        Product product = product( productDescription, packaging, imported );
         product.getCategories().add(new ProductCategory().code("medical").description("medical"));
         return product;
     }
