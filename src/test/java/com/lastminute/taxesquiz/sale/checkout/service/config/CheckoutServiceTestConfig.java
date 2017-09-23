@@ -1,22 +1,25 @@
 package com.lastminute.taxesquiz.sale.checkout.service;
 
 import com.lastminute.taxesquiz.sale.checkout.config.CheckoutConfig;
-import com.lastminute.taxesquiz.sale.checkout.model.Receipt;
-import com.lastminute.taxesquiz.sale.checkout.service.config.CheckoutServiceTestConfig;
 import com.lastminute.taxesquiz.sale.order.basket.model.Basket;
+import com.lastminute.taxesquiz.sale.checkout.model.Receipt;
 import com.lastminute.taxesquiz.sale.tax.service.TaxService;
 import com.lastminute.taxesquiz.util.BasketMockUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration( classes = {CheckoutServiceTestConfig.class, CheckoutConfig.class})
+@ContextConfiguration( classes = {CheckoutConfig.class})
+@Configuration
 public class CheckoutServiceTest {
 
     @Autowired
@@ -46,6 +49,11 @@ public class CheckoutServiceTest {
         assertEquals(basketWithTaxes, receipt.getBasket());
         assertEquals(exTotalSalesTaxes, receipt.getTotalTaxes().toString());
         assertEquals(exTotal, receipt.getTotal().toString());
+    }
+
+    @Bean
+    public TaxService taxService(){
+        return mock(TaxService.class);
     }
 
 }

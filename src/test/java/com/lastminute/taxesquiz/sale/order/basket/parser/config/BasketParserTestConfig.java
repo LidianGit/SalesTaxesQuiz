@@ -4,10 +4,12 @@ import com.lastminute.taxesquiz.file.reader.service.FileReaderService;
 import com.lastminute.taxesquiz.sale.language.parser.exception.ParserException;
 import com.lastminute.taxesquiz.sale.order.basket.config.BasketConfig;
 import com.lastminute.taxesquiz.sale.order.basket.model.Basket;
-import com.lastminute.taxesquiz.sale.order.basket.parser.config.BasketParserTestConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -18,10 +20,12 @@ import static com.lastminute.taxesquiz.util.BasketMockUtil.basket1;
 import static com.lastminute.taxesquiz.util.BasketMockUtil.basket2;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration( classes = {BasketParserTestConfig.class, BasketConfig.class})
+@ContextConfiguration( classes = {BasketParserTest.class, BasketConfig.class})
+@Configuration
 public class BasketParserTest {
 
     @Autowired
@@ -50,6 +54,11 @@ public class BasketParserTest {
     @Test
     public void parseBasket2Test(){
         parseBasketTest(basket2(), Arrays.asList("1 imported box of chocolates at 10.00", "1 imported bottle of perfume at 47.50") );
+    }
+
+    @Bean
+    public FileReaderService fileReaderService(){
+        return mock(FileReaderService.class);
     }
 
 }

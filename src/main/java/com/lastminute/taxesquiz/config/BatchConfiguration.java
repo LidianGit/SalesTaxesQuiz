@@ -36,12 +36,6 @@ public class BatchConfiguration {
     @Autowired
     private StepBuilderFactory stepBuilderFactory;
 
-    @Autowired
-    private FileReaderService fileReaderService;
-
-    @Autowired
-    private FileWriterService fileWriterService;
-
     @Bean
     public Step step1() {
         return stepBuilderFactory.get("step1")
@@ -49,8 +43,7 @@ public class BatchConfiguration {
                     public RepeatStatus execute( StepContribution contribution, ChunkContext chunkContext ) {
                         return RepeatStatus.FINISHED;
                     }
-                })
-                .build();
+                }).build();
     }
 
     @Bean

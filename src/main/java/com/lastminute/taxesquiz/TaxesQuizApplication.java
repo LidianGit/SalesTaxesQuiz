@@ -7,10 +7,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-public class SalesTaxesSkillQuizApplication {
+public class TaxesQuizApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SalesTaxesSkillQuizApplication.class, args);
+		SpringApplication.run(TaxesQuizApplication.class, args);
 	}
 
 }
