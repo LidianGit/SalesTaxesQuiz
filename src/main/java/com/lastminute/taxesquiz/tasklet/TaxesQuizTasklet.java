@@ -32,7 +32,7 @@ public class TaxesQuizTasklet implements Tasklet{
 
     @Override
     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-        String inputPath = "/src/test/resources/input/input_1/basket.csv";
+        String inputPath = "src/test/resources/input/input_1/basket.csv";
         String outputFileName = "receipt_1";
 
         Basket basket = basketParser.parse(inputPath);
