@@ -2,8 +2,6 @@ package com.lastminute.taxesquiz.sale.language.formatter.service;
 
 import com.lastminute.taxesquiz.sale.checkout.model.Receipt;
 import com.lastminute.taxesquiz.sale.language.formatter.config.FormatterConfig;
-import com.lastminute.taxesquiz.sale.order.basket.item.model.BasketItem;
-import com.lastminute.taxesquiz.sale.order.basket.model.Basket;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
