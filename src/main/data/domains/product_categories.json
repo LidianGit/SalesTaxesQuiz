@@ -1,0 +1,45 @@
+[
+   {
+      "code":"default",
+      "description":"default",
+      "taxes":[
+         {
+            "code":"basic",
+            "description":"Basic tax for products",
+            "percentage":"10.00"
+         }
+      ]
+   },
+   {
+      "code":"imported",
+      "description":"imported",
+      "taxes":[
+         {
+            "code":"basic",
+            "description":"Imported products tax",
+            "percentage":"5.00"
+         }
+      ]
+   },
+   {
+      "code":"books",
+      "description":"books",
+      "taxes":[
+
+      ]
+   },
+   {
+      "code":"food",
+      "description":"food",
+      "taxes":[
+
+      ]
+   },
+   {
+      "code":"medical",
+      "description":"medical",
+      "taxes":[
+
+      ]
+   }
+]

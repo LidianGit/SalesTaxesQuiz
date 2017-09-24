@@ -1,0 +1,75 @@
+[
+  {
+    "code":"book",
+    "description":"book",
+    "categories":[
+      {
+        "code":"books",
+        "description":"books",
+        "taxes":[
+
+        ]
+      }
+    ]
+  },
+  {
+    "code":"music CD",
+    "description":"music CD",
+    "categories":[
+      {
+        "code":"default",
+        "description":"default",
+        "taxes":[
+          {
+            "code":"basic",
+            "description":"Basic tax for products",
+            "percentage":"10.00"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "code":"chocolate",
+    "description":"chocolate",
+    "categories":[
+      {
+        "code":"food",
+        "description":"food",
+        "taxes":[
+
+        ]
+      }
+    ]
+  },
+  {
+    "code":"perfume",
+    "description":"perfume",
+    "categories":[
+      {
+        "code":"default",
+        "description":"default",
+        "taxes":[
+          {
+            "code":"basic",
+            "description":"Basic tax for products",
+            "percentage":"10.00"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "code":"headache pills",
+    "description":"headache pills",
+    "categories":[
+      {
+        "code":"medical",
+        "description":"medical",
+        "taxes":[
+
+        ]
+      }
+    ]
+  }
+]
