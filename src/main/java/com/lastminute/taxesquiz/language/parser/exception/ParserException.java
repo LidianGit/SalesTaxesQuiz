@@ -1,4 +1,4 @@
-package com.lastminute.taxesquiz.sale.language.parser.exception;
+package com.lastminute.taxesquiz.language.parser.exception;
 
 public class ParserException extends Exception {
 

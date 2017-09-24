@@ -1,8 +1,8 @@
-package com.lastminute.taxesquiz.printer.service.impl;
+package com.lastminute.taxesquiz.file.printer.service.impl;
 
 import com.lastminute.taxesquiz.file.writer.service.FileWriterService;
-import com.lastminute.taxesquiz.printer.service.PrinterService;
-import com.lastminute.taxesquiz.sale.language.formatter.service.FormatterService;
+import com.lastminute.taxesquiz.file.printer.service.PrinterService;
+import com.lastminute.taxesquiz.language.formatter.service.FormatterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
