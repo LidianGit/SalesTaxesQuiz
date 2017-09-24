@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration( classes = {BasketItemParserTest.class})
 @Configuration
-@ComponentScan({"com.lastminute.taxesquiz.sale.order.basket.item.parser", "com.lastminute.taxesquiz.sale.product.parser"})
+@ComponentScan({"com.lastminute.taxesquiz.sale.basket.item.parser", "com.lastminute.taxesquiz.sale.product.parser"})
 public class BasketItemParserTest {
 
     @Autowired
