@@ -46,7 +46,7 @@ Output 3:
 Sales Taxes: 6.70
 Total: 74.68
 
-#SOLUTION
+# SOLUTION
 
 batch application written with:
 
@@ -59,9 +59,9 @@ batch application written with:
 
 The original problem was splitted into three main subproblems:
 
-1 - Parse:    parse input files from a specific directory and deserialze them into shopping basket objects
-2 - Checkout: given a basket apply taxes on goods and issue a receipt
-3 - Print:    print out a receipt formatted
+- Parse:    parse input files from a specific directory and deserialze them into shopping basket objects
+- Checkout: given a basket apply taxes on goods and issue a receipt
+- Print:    print out a receipt formatted
 
 Parser engine works with a language provided by a domain service layer mocked with json -> this layer is suited for a new implementation 
 that calls a domain web service.
