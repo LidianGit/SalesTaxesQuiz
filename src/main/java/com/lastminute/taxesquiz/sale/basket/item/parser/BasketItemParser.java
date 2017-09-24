@@ -1,5 +1,7 @@
 package com.lastminute.taxesquiz.sale.basket.item.parser;
 
+import com.lastminute.taxesquiz.language.domain.DomainType;
+import com.lastminute.taxesquiz.language.domain.service.DomainService;
 import com.lastminute.taxesquiz.sale.basket.item.model.BasketItem;
 import com.lastminute.taxesquiz.language.parser.exception.ParserException;
 import com.lastminute.taxesquiz.language.parser.GenericStringParser;
@@ -22,6 +24,9 @@ public class BasketItemParser extends GenericStringParser<BasketItem> {
     @Autowired
     private ProductParser productParser;
 
+    @Autowired
+    private DomainService domainService;
+
     @Override
     protected LinkedList<String> init(String input){
         String[] inputWords = input.split(" ");
@@ -33,11 +38,11 @@ public class BasketItemParser extends GenericStringParser<BasketItem> {
     public BasketItem parse(LinkedList<String> words) throws ParserException {
         BasketItem basketItem = new BasketItem();
         try {
-            //words = purify(words);
             Integer qty = Integer.parseInt(words.removeFirst());   // O(1)
             BigDecimal price = new BigDecimal(words.removeLast()); // O(1)
-            words.removeLast();// O(1) remote at
-
+            if(domainService.contains(DomainType.PREPOSITION, words.getLast())  ){
+                words.removeLast();// O(1) remove price preposition
+            }
             String productWord = StringUtils.join(words, " ");
             Product product = productParser.parse(productWord);
             basketItem.product(product).qty(qty).price(price);
@@ -48,21 +53,4 @@ public class BasketItemParser extends GenericStringParser<BasketItem> {
         return basketItem;
     }
 
-    /*
-    private LinkedList<String> purify(LinkedList<String> words){
-        Iterator<String> stringIterator = words.iterator();
-        while(stringIterator.hasNext()){
-            String word = stringIterator.next();
-            if(Preposition.lookup(word)){
-                stringIterator.remove();
-                continue;
-            }
-            if(ProductPackage.lookup((word))){
-                stringIterator.remove();
-                continue;
-            }
-        }
-        return words;
-    }
-    */
 }

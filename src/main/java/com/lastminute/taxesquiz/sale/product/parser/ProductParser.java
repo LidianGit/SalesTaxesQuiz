@@ -32,7 +32,7 @@ public class ProductParser extends GenericStringParser<Product> {
 
     @Override
     protected LinkedList<String> init(String input) {
-        String[] inputWords = input.split(" ");
+        String[] inputWords = input.split(StringUtils.SPACE);
         return new LinkedList<>(Arrays.asList(inputWords));
     }
 
@@ -42,7 +42,7 @@ public class ProductParser extends GenericStringParser<Product> {
         try{
             String packaging = findPackaging(words);
             Boolean imported = findImported(words);
-            String productWord = StringUtils.join(words, " ");
+            String productWord = StringUtils.join(words, StringUtils.SPACE);
             product = productService.retrieveProduct(productWord, packaging, imported);
         }catch (Exception e){
             logger.error("Unable to parse product words [" + words + "]", e);

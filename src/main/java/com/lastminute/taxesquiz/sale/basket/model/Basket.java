@@ -59,7 +59,6 @@ public class Basket implements Formattable, Serializable{
     @Override
     public void formatTo(Formatter formatter, int flags, int width, int precision) {
         StringBuilder sb = new StringBuilder();
-        Formatter biFormatter = new Formatter();
         basketItems.forEach(
                 bi -> sb.append(formatBasketItem(bi)).append(System.lineSeparator())
         );

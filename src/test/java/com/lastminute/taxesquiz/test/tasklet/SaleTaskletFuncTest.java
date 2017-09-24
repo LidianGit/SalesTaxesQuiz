@@ -36,7 +36,7 @@ import static org.mockito.Mockito.when;
         PrinterConfig.class,
 })
 @Configuration
-public class SaleTaskletTest {
+public class SaleTaskletFuncTest {
 
     @Autowired
     private SaleTasklet saleTasklet;
