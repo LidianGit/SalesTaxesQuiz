@@ -3,7 +3,7 @@ package com.lastminute.taxesquiz.test.sale.tax.util;
 import com.lastminute.taxesquiz.sale.product.model.ProductCategory;
 import com.lastminute.taxesquiz.sale.tax.model.Tax;
 import com.lastminute.taxesquiz.sale.tax.util.TaxCalculatorUtil;
-import com.lastminute.taxesquiz.util.BasketMockUtil;
+import com.lastminute.taxesquiz.util.MockUtil;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -17,16 +17,16 @@ public class TaxCalculatorUtilTest {
     @Test
     public void sumTaxesBasketItemTaxes(){
         BigDecimal taxesSum = TaxCalculatorUtil.sumTaxes(
-                BasketMockUtil.basketItem(
-                        BasketMockUtil.defaultTaxableProduct("perfume", "bottle of",false),
+                MockUtil.basketItem(
+                        MockUtil.defaultTaxableProduct("perfume","perfume", "bottle of",false),
                         new BigDecimal("18.99"),
                         new Integer(1)
                 )
         );
         assertEquals("1.90", taxesSum.toString());
         taxesSum = TaxCalculatorUtil.sumTaxes(
-                BasketMockUtil.basketItem(
-                        BasketMockUtil.defaultTaxableProduct("perfume", "bottle of",true),
+                MockUtil.basketItem(
+                        MockUtil.defaultTaxableProduct("perfume","perfume", "bottle of",true),
                         new BigDecimal("27.99"),
                         new Integer(1)
                 )
@@ -36,14 +36,14 @@ public class TaxCalculatorUtilTest {
 
     @Test
     public void sumProductCategoryTaxesTest(){
-        BigDecimal taxesSum = TaxCalculatorUtil.sumTaxes(new BigDecimal("10.00"), BasketMockUtil.defaultProductCategory());
+        BigDecimal taxesSum = TaxCalculatorUtil.sumTaxes(new BigDecimal("10.00"), MockUtil.defaultProductCategory());
         assertEquals("1.00", taxesSum.toString());
 
         List<Tax> multiTaxes = new ArrayList<>();
         multiTaxes.add( new Tax().percent(new BigDecimal("5.00") ));
         multiTaxes.add( new Tax().percent(new BigDecimal("5.00") ));
 
-        ProductCategory multiTaxesProductCat = BasketMockUtil.productCategory("MULTITAXES", "multiple taxes", multiTaxes );
+        ProductCategory multiTaxesProductCat = MockUtil.productCategory("MULTITAXES", "multiple taxes", multiTaxes );
 
         taxesSum = TaxCalculatorUtil.sumTaxes(new BigDecimal("10.00"), multiTaxesProductCat);
         assertEquals("1.00", taxesSum.toString());

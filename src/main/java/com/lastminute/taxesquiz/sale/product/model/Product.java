@@ -10,39 +10,12 @@ import java.util.Formattable;
 import java.util.Formatter;
 import java.util.Set;
 
-public class Product implements Formattable, Serializable {
+public class Product extends GenericProduct implements Formattable, Serializable {
 
     private static final long serialVersionUID = -7570056540194524800L;
 
-    private String code;
-    private String description;
     private Boolean imported = false;
     private String packaging="";
-    private Set<ProductCategory> categories;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<ProductCategory> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<ProductCategory> categories) {
-        this.categories = categories;
-    }
 
     public Boolean getImported() {
         return imported;
@@ -70,6 +43,11 @@ public class Product implements Formattable, Serializable {
         return this;
     }
 
+    public Product categories(Set<ProductCategory> categories){
+        this.categories = categories;
+        return this;
+    }
+
     public Product packaging(String packaging){
         this.packaging = packaging;
         return this;
@@ -77,11 +55,6 @@ public class Product implements Formattable, Serializable {
 
     public Product imported(Boolean imported){
         this.imported = imported;
-        return this;
-    }
-
-    public Product categories(Set<ProductCategory> categories){
-        this.categories = categories;
         return this;
     }
 

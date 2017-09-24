@@ -1,6 +1,7 @@
 package com.lastminute.taxesquiz.test.sale.order.basket.parser.config;
 
 import com.lastminute.taxesquiz.file.reader.service.FileReaderService;
+import com.lastminute.taxesquiz.language.domain.service.DomainService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

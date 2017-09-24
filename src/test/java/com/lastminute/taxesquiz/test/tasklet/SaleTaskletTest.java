@@ -2,8 +2,10 @@ package com.lastminute.taxesquiz.test.tasklet;
 
 import com.lastminute.taxesquiz.file.printer.config.PrinterConfig;
 import com.lastminute.taxesquiz.file.reader.config.FileReaderConfig;
+import com.lastminute.taxesquiz.language.domain.config.DomainConfig;
 import com.lastminute.taxesquiz.sale.config.SaleConfig;
 import com.lastminute.taxesquiz.sale.tasklet.SaleTasklet;
+import com.lastminute.taxesquiz.test.common.PropertiesTestConfig;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Test;
@@ -27,6 +29,8 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration( classes = {
+        PropertiesTestConfig.class,
+        DomainConfig.class,
         SaleConfig.class,
         FileReaderConfig.class,
         PrinterConfig.class,

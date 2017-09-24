@@ -3,8 +3,8 @@ package com.lastminute.taxesquiz.language.domain;
 public enum DomainType {
 
     PREPOSITION,
-    PRODUCTPACKAGE,
-    ORIGIN,
-    CATEGORY
+    PRODUCT_PACKAGE,
+    PRODUCT,
+    PRODUCT_CATEGORY
 
 }

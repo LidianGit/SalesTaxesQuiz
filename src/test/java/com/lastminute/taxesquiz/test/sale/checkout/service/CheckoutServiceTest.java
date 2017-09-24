@@ -6,7 +6,7 @@ import com.lastminute.taxesquiz.sale.checkout.service.CheckoutService;
 import com.lastminute.taxesquiz.test.sale.checkout.service.config.CheckoutServiceTestConfig;
 import com.lastminute.taxesquiz.sale.basket.model.Basket;
 import com.lastminute.taxesquiz.sale.tax.service.TaxService;
-import com.lastminute.taxesquiz.util.BasketMockUtil;
+import com.lastminute.taxesquiz.util.MockUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +28,17 @@ public class CheckoutServiceTest {
 
     @Test
     public void issueReceiptBasket1(){
-        assertReceipt( BasketMockUtil.basket1(), BasketMockUtil.basket1WithTaxes(), "1.50", "29.83");
+        assertReceipt( MockUtil.basket1(), MockUtil.basket1WithTaxes(), "1.50", "29.83");
     }
 
     @Test
     public void issueReceiptBasket2(){
-        assertReceipt( BasketMockUtil.basket2(), BasketMockUtil.basket2WithTaxes(), "7.65", "65.15");
+        assertReceipt( MockUtil.basket2(), MockUtil.basket2WithTaxes(), "7.65", "65.15");
     }
 
     @Test
     public void issueReceiptBasket3(){
-        assertReceipt( BasketMockUtil.basket3(), BasketMockUtil.basket3WithTaxes(), "6.70", "74.68");
+        assertReceipt( MockUtil.basket3(), MockUtil.basket3WithTaxes(), "6.70", "74.68");
     }
 
     private void assertReceipt(Basket basket, Basket basketWithTaxes, String exTotalSalesTaxes, String exTotal){

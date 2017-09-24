@@ -1,5 +1,6 @@
 package com.lastminute.taxesquiz.sale.product.model;
 
+import com.lastminute.taxesquiz.language.domain.GenericDomain;
 import com.lastminute.taxesquiz.sale.tax.model.Tax;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -8,27 +9,11 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductCategory {
+public class ProductCategory extends GenericDomain {
 
-    private String code;
-    private String description;
+    private static final long serialVersionUID = -7889839740720675768L;
+
     private List<Tax> taxes = new ArrayList<>();
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public List<Tax> getTaxes() {
         return taxes;

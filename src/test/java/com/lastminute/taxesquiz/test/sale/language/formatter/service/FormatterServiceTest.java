@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.math.BigDecimal;
 import java.util.Formattable;
 
-import static com.lastminute.taxesquiz.util.BasketMockUtil.*;
+import static com.lastminute.taxesquiz.util.MockUtil.*;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,54 +24,54 @@ public class FormatterServiceTest {
 
     @Test
     public void formatProductTest(){
-        formatProductTest("book", "book", "", false);
-        formatProductTest("music CD", "music CD", "", false);
-        formatProductTest("chocolate bar", "chocolate bar", "", false);
-        formatProductTest("imported box of chocolates", "chocolates", "box of", true);
-        formatProductTest("imported bottle of perfume", "perfume", "bottle of", true);
-        formatProductTest("bottle of perfume", "perfume", "bottle of", false);
-        formatProductTest("packet of headache pills", "headache pills", "packet of", false);
+        formatProductTest("book", "book","book", "", false);
+        formatProductTest("music CD", "music CD","music CD", "", false);
+        formatProductTest("chocolate bar", "chocolate","chocolate bar", "", false);
+        formatProductTest("imported box of chocolates", "chocolate","chocolates", "box of", true);
+        formatProductTest("imported bottle of perfume", "perfume","perfume", "bottle of", true);
+        formatProductTest("bottle of perfume", "perfume","perfume", "bottle of", false);
+        formatProductTest("packet of headache pills", "headache pills","headache pills", "packet of", false);
     }
 
     @Test
     public void formatTest(){
         formatTest("5 product: 0.00", basketItem(
-                product("product", "", false),
+                product("product","product", "", false),
                 new BigDecimal("0.00"),
                 5
         ));
         formatTest("1 book: 12.49", basketItem(
-                bookProduct("book", "", false),
+                bookProduct("book","book", "", false),
                 new BigDecimal("12.49"),
                 1
         ));
         formatTest("1 music CD: 16.49", basketItem(
-                defaultTaxableProduct("music CD", "",false),
+                defaultTaxableProduct("music CD","music CD", "",false),
                 new BigDecimal("16.49"),
                 1
         ));
         formatTest("1 chocolate bar: 0.85", basketItem(
-                foodProduct("chocolate bar", "",false),
+                foodProduct("chocolate","chocolate bar", "",false),
                 new BigDecimal("0.85"),
                 1
         ));
         formatTest("1 imported box of chocolates: 10.50", basketItem(
-                foodProduct("chocolates", "box of", true),
+                foodProduct("chocolate","chocolates", "box of", true),
                 new BigDecimal("10.50"),
                 1
         ));
         formatTest("1 imported bottle of perfume: 54.65", basketItem(
-                defaultTaxableProduct("perfume","bottle of", true),
+                defaultTaxableProduct("perfume","perfume","bottle of", true),
                 new BigDecimal("54.65"),
                 1
         ));
         formatTest("1 bottle of perfume: 20.89", basketItem(
-                defaultTaxableProduct("perfume","bottle of",false),
+                defaultTaxableProduct("perfume","perfume","bottle of",false),
                 new BigDecimal("20.89"),
                 1
         ));
         formatTest("1 packet of headache pills: 9.75", basketItem(
-                medicalProduct("headache pills", "packet of", false),
+                medicalProduct("headache pills","headache pills", "packet of", false),
                 new BigDecimal("9.75"),
                 1
         ));
@@ -130,8 +130,8 @@ public class FormatterServiceTest {
         assertEquals(expected, formatted);
     }
 
-    private void formatProductTest(String expected, String productDescription, String packaging, boolean imported){
-        formatTest(expected, product(productDescription, packaging, imported));
+    private void formatProductTest(String expected, String code, String desc, String packaging, boolean imported){
+        formatTest(expected, product(code, desc, packaging, imported));
     }
 
 }

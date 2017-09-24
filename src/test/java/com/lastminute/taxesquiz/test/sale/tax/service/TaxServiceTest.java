@@ -4,7 +4,7 @@ import com.lastminute.taxesquiz.sale.basket.model.Basket;
 import com.lastminute.taxesquiz.sale.basket.item.model.BasketItem;
 import com.lastminute.taxesquiz.sale.tax.config.TaxConfig;
 import com.lastminute.taxesquiz.sale.tax.service.TaxService;
-import com.lastminute.taxesquiz.util.BasketMockUtil;
+import com.lastminute.taxesquiz.util.MockUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +26,17 @@ public class TaxServiceTest {
 
     @Test
     public void applyTaxesToBasket1(){
-        assertApplyTaxesToBasket( BasketMockUtil.basket1WithTaxes(), BasketMockUtil.basket1());
+        assertApplyTaxesToBasket( MockUtil.basket1WithTaxes(), MockUtil.basket1());
     }
 
     @Test
     public void applyTaxesToBasket2(){
-        assertApplyTaxesToBasket( BasketMockUtil.basket2WithTaxes(), BasketMockUtil.basket2());
+        assertApplyTaxesToBasket( MockUtil.basket2WithTaxes(), MockUtil.basket2());
     }
 
     @Test
     public void applyTaxesToBasket3(){
-        assertApplyTaxesToBasket( BasketMockUtil.basket3WithTaxes(), BasketMockUtil.basket3());
+        assertApplyTaxesToBasket( MockUtil.basket3WithTaxes(), MockUtil.basket3());
     }
 
     private void assertApplyTaxesToBasket( Basket exBasketWithTaxes, Basket basket){
