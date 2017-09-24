@@ -60,7 +60,7 @@ batch application written with:
 The original problem was splitted into three main subproblems:
 
 - Parse:    parse input files from a specific directory and deserialze them into shopping basket objects
-- Checkout: given a basket apply taxes on goods and issue a receipt
+- Checkout: apply taxes on goods and issue a receipt on a given basket
 - Print:    print out a receipt formatted
 
 Parser engine works with a language provided by a domain service layer mocked with json -> this layer is suited for a new implementation 
@@ -72,3 +72,21 @@ Every layer implemented is provided with unit tests and/or functional tests.
 
 The main functional test for this application is SaleTaskletFuncTest.java: executes the three steps and asserts that outputs are equals to 
 the samples outputs provided, then deletes the created files.
+
+# BUILD
+
+buil with maven command:
+
+mvn clean install
+
+or
+
+./scripts/build.sh
+
+Artifact is under dist/boot/taxes-quiz
+
+# RUN!
+
+locate the jar inside dist/boot/taxes-quiz and run ./startBootApplication.sh
+
+3 output files will be generated in the same directory with convention receipt_%i%
