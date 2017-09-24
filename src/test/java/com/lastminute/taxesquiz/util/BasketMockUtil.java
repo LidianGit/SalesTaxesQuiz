@@ -1,7 +1,7 @@
 package com.lastminute.taxesquiz.util;
 
-import com.lastminute.taxesquiz.sale.order.basket.item.model.BasketItem;
-import com.lastminute.taxesquiz.sale.order.basket.model.Basket;
+import com.lastminute.taxesquiz.sale.basket.item.model.BasketItem;
+import com.lastminute.taxesquiz.sale.basket.model.Basket;
 import com.lastminute.taxesquiz.sale.product.model.Product;
 import com.lastminute.taxesquiz.sale.product.model.ProductCategory;
 import com.lastminute.taxesquiz.sale.tax.model.Tax;

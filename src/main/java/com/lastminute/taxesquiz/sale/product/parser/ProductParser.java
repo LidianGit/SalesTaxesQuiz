@@ -1,10 +1,10 @@
 package com.lastminute.taxesquiz.sale.product.parser;
 
-import com.lastminute.taxesquiz.sale.language.domain.Preposition;
-import com.lastminute.taxesquiz.sale.language.domain.ProductPackage;
-import com.lastminute.taxesquiz.sale.language.parser.exception.ParserException;
-import com.lastminute.taxesquiz.sale.language.parser.GenericStringParser;
-import com.lastminute.taxesquiz.sale.order.basket.item.parser.BasketItemParser;
+import com.lastminute.taxesquiz.language.domain.Preposition;
+import com.lastminute.taxesquiz.language.domain.ProductPackage;
+import com.lastminute.taxesquiz.language.parser.exception.ParserException;
+import com.lastminute.taxesquiz.language.parser.GenericStringParser;
+import com.lastminute.taxesquiz.sale.basket.item.parser.BasketItemParser;
 import com.lastminute.taxesquiz.sale.product.model.Product;
 import com.lastminute.taxesquiz.sale.product.model.ProductCategory;
 import com.lastminute.taxesquiz.sale.tax.model.Tax;

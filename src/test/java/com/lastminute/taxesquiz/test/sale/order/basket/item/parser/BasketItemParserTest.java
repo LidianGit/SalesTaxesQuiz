@@ -1,9 +1,9 @@
 package com.lastminute.taxesquiz.test.sale.order.basket.item.parser;
 
-import com.lastminute.taxesquiz.sale.order.basket.item.model.BasketItem;
-import com.lastminute.taxesquiz.sale.order.basket.item.parser.BasketItemParser;
+import com.lastminute.taxesquiz.sale.basket.item.model.BasketItem;
+import com.lastminute.taxesquiz.sale.basket.item.parser.BasketItemParser;
 import com.lastminute.taxesquiz.sale.product.model.ProductCategory;
-import com.lastminute.taxesquiz.sale.language.parser.exception.ParserException;
+import com.lastminute.taxesquiz.language.parser.exception.ParserException;
 import com.lastminute.taxesquiz.util.BasketMockUtil;
 import org.hamcrest.Matchers;
 import org.junit.Test;

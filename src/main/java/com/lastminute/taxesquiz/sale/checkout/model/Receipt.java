@@ -1,6 +1,6 @@
 package com.lastminute.taxesquiz.sale.checkout.model;
 
-import com.lastminute.taxesquiz.sale.order.basket.model.Basket;
+import com.lastminute.taxesquiz.sale.basket.model.Basket;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;

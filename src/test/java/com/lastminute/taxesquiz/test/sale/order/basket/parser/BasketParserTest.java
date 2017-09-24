@@ -1,10 +1,11 @@
 package com.lastminute.taxesquiz.test.sale.order.basket.parser;
 
 import com.lastminute.taxesquiz.file.reader.service.FileReaderService;
-import com.lastminute.taxesquiz.sale.language.parser.exception.ParserException;
-import com.lastminute.taxesquiz.sale.order.basket.config.BasketConfig;
-import com.lastminute.taxesquiz.sale.order.basket.model.Basket;
-import com.lastminute.taxesquiz.sale.order.basket.parser.BasketParser;
+import com.lastminute.taxesquiz.file.reader.service.exception.FileReaderServiceException;
+import com.lastminute.taxesquiz.language.parser.exception.ParserException;
+import com.lastminute.taxesquiz.sale.basket.config.BasketConfig;
+import com.lastminute.taxesquiz.sale.basket.model.Basket;
+import com.lastminute.taxesquiz.sale.basket.parser.BasketParser;
 import com.lastminute.taxesquiz.sale.product.config.ProductConfig;
 import com.lastminute.taxesquiz.test.sale.order.basket.parser.config.BasketParserTestConfig;
 import org.junit.Test;
@@ -39,7 +40,7 @@ public class BasketParserTest {
             );
             Basket basket = basketParser.parse("/mockFilePath");
             assertEquals(basketExp, basket);
-        } catch (ParserException e) {
+        } catch (ParserException | FileReaderServiceException e) {
             fail();
         }
     }

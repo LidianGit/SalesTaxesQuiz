@@ -1,7 +1,7 @@
 package com.lastminute.taxesquiz.test.sale.tax.service;
 
-import com.lastminute.taxesquiz.sale.order.basket.model.Basket;
-import com.lastminute.taxesquiz.sale.order.basket.item.model.BasketItem;
+import com.lastminute.taxesquiz.sale.basket.model.Basket;
+import com.lastminute.taxesquiz.sale.basket.item.model.BasketItem;
 import com.lastminute.taxesquiz.sale.tax.config.TaxConfig;
 import com.lastminute.taxesquiz.sale.tax.service.TaxService;
 import com.lastminute.taxesquiz.util.BasketMockUtil;

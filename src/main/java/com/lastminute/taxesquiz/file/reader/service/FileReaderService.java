@@ -1,20 +1,22 @@
 package com.lastminute.taxesquiz.file.reader.service;
 
+import com.lastminute.taxesquiz.file.reader.service.exception.FileReaderServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-@Component
+@Service
 public class FileReaderService {
 
     private static final Logger logger = LoggerFactory.getLogger( FileReaderService.class );
 
-    public List<String> lines(String fullPath) {
+    public List<String> lines(String fullPath) throws FileReaderServiceException {
         List<String> lines = new ArrayList<>();
         BufferedReader reader = null;
         try {
@@ -30,6 +32,7 @@ public class FileReaderService {
             }while(line!=null);
         } catch (IOException e) {
             logger.error( "Error reading input lines from file [" + fullPath + "]" , e);
+            throw new FileReaderServiceException("Error reading input lines from file [" + fullPath + "]", e);
         }finally {
             try {
                 if (reader!=null) reader.close();
@@ -40,7 +43,7 @@ public class FileReaderService {
         return lines;
     }
 
-    public List<String> lines(String filePath, String fileName ) {
+    public List<String> lines(String filePath, String fileName ) throws FileReaderServiceException {
         return lines( filePath + File.separator + fileName );
     }
 

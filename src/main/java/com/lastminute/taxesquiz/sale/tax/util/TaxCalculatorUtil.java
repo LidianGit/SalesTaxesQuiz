@@ -1,6 +1,6 @@
 package com.lastminute.taxesquiz.sale.tax.util;
 
-import com.lastminute.taxesquiz.sale.order.basket.item.model.BasketItem;
+import com.lastminute.taxesquiz.sale.basket.item.model.BasketItem;
 import com.lastminute.taxesquiz.sale.product.model.ProductCategory;
 import com.lastminute.taxesquiz.math.rounding.rule.RoundingRuleType;
 import com.lastminute.taxesquiz.math.util.MathUtil;
