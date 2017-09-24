@@ -36,7 +36,7 @@ public class BasketItemParserTest {
             String input = "1 book at 12.49";
             BasketItem basketItem = basketItemParser.parse(input);
             BasketItem basketItemExp = BasketMockUtil.basketItem(
-                    BasketMockUtil.bookProduct("book", "",false), new BigDecimal("12.49"), new Integer(1));
+                    BasketMockUtil.bookProduct("book", "",false), new BigDecimal("12.49"), 1);
             assertEquals(basketItemExp, basketItem);
             assertThat( basketItem.getProduct().getCategories(), hasSize(1));
             assertThat(basketItem.getProduct().getCategories(), hasItems(
@@ -48,7 +48,7 @@ public class BasketItemParserTest {
             input = "1 music CD at 14.99";
             basketItem = basketItemParser.parse(input);
             basketItemExp = BasketMockUtil.basketItem(
-                    BasketMockUtil.defaultTaxableProduct("music CD", "",false), new BigDecimal("14.99"), new Integer(1));
+                    BasketMockUtil.defaultTaxableProduct("music CD", "",false), new BigDecimal("14.99"), 1);
             assertEquals(basketItemExp, basketItem);
             assertThat( basketItem.getProduct().getCategories(), hasSize(1));
             assertThat(basketItem.getProduct().getCategories(), Matchers.hasItems(
@@ -60,7 +60,7 @@ public class BasketItemParserTest {
             input = "1 chocolate bar at 0.85";
             basketItem = basketItemParser.parse(input);
             basketItemExp = BasketMockUtil.basketItem(
-                    BasketMockUtil.foodProduct("chocolate bar", "", false), new BigDecimal("0.85"), new Integer(1));
+                    BasketMockUtil.foodProduct("chocolate bar", "", false), new BigDecimal("0.85"), 1);
             assertEquals(basketItemExp, basketItem);
             assertThat( basketItem.getProduct().getCategories(), hasSize(1));
             assertThat(basketItem.getProduct().getCategories(), hasItems(
@@ -81,7 +81,7 @@ public class BasketItemParserTest {
             String input = "1 imported box of chocolates at 10.00";
             BasketItem basketItem = basketItemParser.parse(input);
             BasketItem basketItemExp = BasketMockUtil.basketItem(
-                    BasketMockUtil.foodProduct("chocolates", "box of", true), new BigDecimal("10.00"), new Integer(1));
+                    BasketMockUtil.foodProduct("chocolates", "box of", true), new BigDecimal("10.00"), 1);
             assertEquals(basketItemExp, basketItem);
             assertThat( basketItem.getProduct().getCategories(), hasSize(2));
             assertThat(basketItem.getProduct().getCategories(), hasItems(
@@ -94,7 +94,7 @@ public class BasketItemParserTest {
             input = "1 imported bottle of perfume at 47.50";
             basketItem = basketItemParser.parse(input);
             basketItemExp = BasketMockUtil.basketItem(
-                    BasketMockUtil.defaultTaxableProduct("perfume", "bottle of", true), new BigDecimal("47.50"), new Integer(1));
+                    BasketMockUtil.defaultTaxableProduct("perfume", "bottle of", true), new BigDecimal("47.50"), 1);
             assertEquals(basketItemExp, basketItem);
             assertThat( basketItem.getProduct().getCategories(), hasSize(2));
             assertThat(basketItem.getProduct().getCategories(), Matchers.hasItems(
@@ -115,7 +115,7 @@ public class BasketItemParserTest {
             String input = "1 imported bottle of perfume at 27.99";
             BasketItem basketItem = basketItemParser.parse(input);
             BasketItem basketItemExp = BasketMockUtil.basketItem(
-                    BasketMockUtil.defaultTaxableProduct("perfume", "bottle of", true), new BigDecimal("27.99"), new Integer(1));
+                    BasketMockUtil.defaultTaxableProduct("perfume", "bottle of", true), new BigDecimal("27.99"), 1);
             assertEquals(basketItemExp, basketItem);
             assertThat( basketItem.getProduct().getCategories(), hasSize(2));
             assertThat(basketItem.getProduct().getCategories(), Matchers.hasItems(
@@ -128,7 +128,7 @@ public class BasketItemParserTest {
             input = "1 bottle of perfume at 18.99";
             basketItem = basketItemParser.parse(input);
             basketItemExp = BasketMockUtil.basketItem(
-                    BasketMockUtil.defaultTaxableProduct("perfume", "bottle of", false), new BigDecimal("18.99"), new Integer(1));
+                    BasketMockUtil.defaultTaxableProduct("perfume", "bottle of", false), new BigDecimal("18.99"), 1);
             assertEquals(basketItemExp, basketItem);
             assertThat( basketItem.getProduct().getCategories(), hasSize(1));
             assertThat(basketItem.getProduct().getCategories(), Matchers.hasItems(
@@ -140,7 +140,7 @@ public class BasketItemParserTest {
             input = "1 packet of headache pills at 9.75";
             basketItem = basketItemParser.parse(input);
             basketItemExp = BasketMockUtil.basketItem(
-                    BasketMockUtil.medicalProduct("headache pills", "packet of", false), new BigDecimal("9.75"), new Integer(1));
+                    BasketMockUtil.medicalProduct("headache pills", "packet of", false), new BigDecimal("9.75"), 1);
             assertEquals(basketItemExp, basketItem);
             assertThat( basketItem.getProduct().getCategories(), hasSize(1));
             assertThat(basketItem.getProduct().getCategories(), hasItems(
@@ -152,7 +152,7 @@ public class BasketItemParserTest {
             input = "1 box of imported chocolates at 11.25";
             basketItem = basketItemParser.parse(input);
             basketItemExp = BasketMockUtil.basketItem(
-                    BasketMockUtil.foodProduct("chocolates", "box of", true), new BigDecimal("11.25"), new Integer(1));
+                    BasketMockUtil.foodProduct("chocolates", "box of", true), new BigDecimal("11.25"), 1);
             assertEquals(basketItemExp, basketItem);
             assertThat( basketItem.getProduct().getCategories(), hasSize(2));
             assertThat(basketItem.getProduct().getCategories(), hasItems(
@@ -165,15 +165,5 @@ public class BasketItemParserTest {
             fail();
         }
     }
-
-/*
-    private static void assertEqualsBasketItem( BasketItem basketItemExp, BasketItem basketItem ){
-        assertEquals( basketItemExp.getPrice(), basketItem.getPrice());
-        assertEquals( basketItemExp.getQty(), basketItem.getQty());
-        assertEquals( basketItemExp.getProduct().getCode(), basketItem.getProduct().getCode());
-        assertEquals( basketItemExp.getProduct().getDescription(), basketItem.getProduct().getDescription());
-        assertEquals( basketItemExp.getProduct().getCategories(), basketItem.getProduct().getCategories());
-    }
-*/
 
 }

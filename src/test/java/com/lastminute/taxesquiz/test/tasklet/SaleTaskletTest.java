@@ -4,7 +4,8 @@ import com.lastminute.taxesquiz.file.printer.config.PrinterConfig;
 import com.lastminute.taxesquiz.file.reader.config.FileReaderConfig;
 import com.lastminute.taxesquiz.sale.config.SaleConfig;
 import com.lastminute.taxesquiz.sale.tasklet.SaleTasklet;
-import org.junit.Before;
+import org.apache.commons.io.FileUtils;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.batch.core.JobParameters;
@@ -19,6 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.File;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -35,14 +37,18 @@ public class SaleTaskletTest {
     @Autowired
     private SaleTasklet saleTasklet;
 
-    @Before
+    @After
     public void cleanOutput(){
-        File file = new File("src/test/resources/output/receipt_1.txt");
-        file.delete();
-        file = new File("src/test/resources/output/receipt_2.txt");
-        file.delete();
-        file = new File("src/test/resources/output/receipt_3.txt");
-        file.delete();
+        try{
+            File file = new File("src/test/resources/output/receipt_1.txt");
+            file.delete();
+            file = new File("src/test/resources/output/receipt_2.txt");
+            file.delete();
+            file = new File("src/test/resources/output/receipt_3.txt");
+            file.delete();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -70,6 +76,12 @@ public class SaleTaskletTest {
         );
         try {
             saleTasklet.execute(stepContribution, chunkContext);
+            assertEquals(FileUtils.readLines(new File("src/test/resources/output/expected_receipt_1.txt"), "UTF-8"),
+                         FileUtils.readLines(new File("src/test/resources/output/receipt_1.txt"), "UTF-8"));
+            assertEquals(FileUtils.readLines(new File("src/test/resources/output/expected_receipt_2.txt"), "UTF-8"),
+                         FileUtils.readLines(new File("src/test/resources/output/receipt_2.txt"), "UTF-8"));
+            assertEquals(FileUtils.readLines(new File("src/test/resources/output/expected_receipt_3.txt"), "UTF-8"),
+                         FileUtils.readLines(new File("src/test/resources/output/receipt_3.txt"), "UTF-8"));
         } catch (Exception e) {
             e.printStackTrace();
             fail();

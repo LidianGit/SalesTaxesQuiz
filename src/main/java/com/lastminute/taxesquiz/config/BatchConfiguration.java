@@ -4,6 +4,7 @@ import com.lastminute.taxesquiz.file.reader.config.FileReaderConfig;
 import com.lastminute.taxesquiz.file.reader.service.FileReaderService;
 import com.lastminute.taxesquiz.file.writer.service.FileWriterService;
 import com.lastminute.taxesquiz.file.writer.config.FileWriterConfig;
+import com.lastminute.taxesquiz.sale.tasklet.SaleTasklet;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.Step;
@@ -36,14 +37,12 @@ public class BatchConfiguration {
     @Autowired
     private StepBuilderFactory stepBuilderFactory;
 
+    @Autowired
+    private SaleTasklet saleTasklet;
+
     @Bean
     public Step step1() {
-        return stepBuilderFactory.get("step1")
-                .tasklet( new Tasklet() {
-                    public RepeatStatus execute( StepContribution contribution, ChunkContext chunkContext ) {
-                        return RepeatStatus.FINISHED;
-                    }
-                }).build();
+        return stepBuilderFactory.get("step1").tasklet(saleTasklet).build();
     }
 
     @Bean

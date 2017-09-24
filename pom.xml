@@ -25,6 +25,7 @@
 		<spring.version>4.3.11.RELEASE</spring.version>
 		<org.commons-lang3.version>3.6</org.commons-lang3.version>
 		<org.mockito.version>2.0.2-beta</org.mockito.version>
+		<commons-io.version>2.5</commons-io.version>
 	</properties>
 
 	<dependencies>
@@ -43,6 +44,12 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${org.commons-lang3.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
 		</dependency>
 
 		<!-- TEST -->
